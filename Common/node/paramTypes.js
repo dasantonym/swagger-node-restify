@@ -14,58 +14,54 @@
  *  limitations under the License.
  */
 
-exports.query = exports.q = function(name, description, type, required, allowableValuesEnum, defaultValue) {
+exports.query = exports.q = function(name, description, dataType, required, allowMultiple, allowableValues, defaultValue) {
   return {
     "name" : name,
     "description" : description,
-    "type" : type,
+    "type" : dataType,
+    "dataType" : dataType,
     "required" : required,
-    "enum" : allowableValuesEnum,
+    "allowMultiple" : allowMultiple,
+    "allowableValues" : allowableValues,
     "defaultValue" : defaultValue,
     "paramType" : "query"
   };
 };
 
-exports.path = function(name, description, type, allowableValuesEnum, defaultValue) {
+exports.path = function(name, description, dataType, allowableValues, defaultValue) {
   return {
     "name" : name,
     "description" : description,
-    "type" : type,
+    "type" : dataType,
+    "dataType" : dataType,
     "required" : true,
-    "enum" : allowableValuesEnum,
+    "allowMultiple" : false,
+    "allowableValues" : allowableValues,
     "paramType" : "path",
     "defaultValue" : defaultValue
+
   };
 };
 
-exports.body = function(name, description, type, defaultValue) {
+exports.body = function(name, description, dataType, defaultValue) {
   return {
     "name" : name,
     "description" : description,
-    "type" : type,
+    "type" : dataType,
+    "dataType" : dataType,
     "required" : true,
+    "allowMultiple" : false,
     "paramType" : "body",
     "defaultValue" : defaultValue
   };
 };
 
-exports.form = function(name, description, type, allowableValuesEnum, defaultValue) {
+exports.header = function(name, description, dataType, required) {
   return {
     "name" : name,
     "description" : description,
-    "type" : "string",
-    "required" : true,
-    "enum" : allowableValuesEnum,
-    "paramType" : "form",
-    "defaultValue" : defaultValue
-  };
-};
-
-exports.header = function(name, description, type, required) {
-  return {
-    "name" : name,
-    "description" : description,
-    "type" : type,
+    "type" : dataType,
+    "dataType" : dataType,
     "required" : required,
     "allowMultiple" : false,
     "paramType" : "header"
